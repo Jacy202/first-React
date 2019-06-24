@@ -3,6 +3,19 @@ import TodoItems from './TodoItems'
 import Header from './Header';
 
 class Todo extends Component {
+    state = {
+      todoItems : ['cook','eat','sleep','relax','pray'],
+      newTodo : ""
+    };
+    
+    handleChange = (e) => {
+        this.setState({newTodo: e.target.value})
+        
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(this.state.newTodo)
+    }
     render (){
         const todoItems =['cook','eat','sleep','relax','pray'];
         return (
@@ -10,9 +23,16 @@ class Todo extends Component {
           <Header title = "MY TODO TITLE"/> 
     
             <h1> Welcome to my todo App</h1>
-            <ul>
-            {todoItems.map(item =>(<TodoItems individualItem = {item}/>))}
-            </ul>
+            
+            {this.state.todoItems.map(item =>(
+            <TodoItems individualItem = {item}/>
+            ))}
+            <form onSubmit = {this.handleSubmit}>
+                <label htmlFor = "">Todo Item</label><br/>
+                <input type ="text" name = "todo-item" 
+                value ={this.state.newTodo} onChange={this.handleChange} />{" "} <br/>
+                <button>Submit</button>
+            </form>
             </div>
         )
     }
