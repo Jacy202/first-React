@@ -13,6 +13,14 @@ class Todo extends Component {
         
     }
     handleSubmit = (e) => {
+
+        this.setState(state => {
+            const todoItems = this.state.todoItems.concat(state.newTodo);
+            return {
+                todoItems,
+                newTodo:"",
+            }
+        })
         e.preventDefault()
         console.log(this.state.newTodo)
     }
