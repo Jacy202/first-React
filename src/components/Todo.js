@@ -4,7 +4,7 @@ import Header from './Header';
 
 class Todo extends Component {
     state = {
-      todoItems : ['cook','eat','sleep','relax','pray'],
+      todoItems : [],
       newTodo : ""
     };
     
@@ -13,16 +13,30 @@ class Todo extends Component {
         
     }
     handleSubmit = (e) => {
-
-        this.setState(state => {
-            const todoItems = this.state.todoItems.concat(state.newTodo);
-            return {
-                todoItems,
-                newTodo:"",
+        e.preventDefault();
+        this.setState(prevState => {
+            return{
+                todoItems:[...prevState.todoItems, this.state.newTodo],
+                newTodo: ""
             }
+           
         })
-        e.preventDefault()
-        console.log(this.state.newTodo)
+    }
+    
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.todoItems.length !== this.state.todoItems.length){
+            const JsonState = JSON.stringify(this.state.todoItems)
+            localStorage.setItem('todoItem', JsonState)
+            }
+    }
+    
+    componentDidMount(){
+        const itemsFromLocalStorage = localStorage.getItem('todoItem')
+        const todoItems = JSON.parse(itemsFromLocalStorage);
+        if(todoItems){
+            this.setState(() => ({
+                todoItems
+        }))} 
     }
     render (){
         const todoItems =['cook','eat','sleep','relax','pray'];
@@ -46,3 +60,4 @@ class Todo extends Component {
     }
 }
 export default Todo;
+
