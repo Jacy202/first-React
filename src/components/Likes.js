@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Header from "./Header"
+
 
 export class Likes extends Component {
     state = {
@@ -24,6 +26,7 @@ export class Likes extends Component {
     render () {
         return (
             <div>
+                <Header title="Likes App "/>
                 <h1>welcome to my Likes App</h1>
                 <h3>likes: {this.state.likes}</h3>
                 <button onClick ={this.increaseLikes}>like</button>

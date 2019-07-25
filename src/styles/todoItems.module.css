@@ -1,0 +1,21 @@
+.todoItems {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin: 5px 0;
+    background: #e1e1e1;
+    align-content: center;
+}
+
+.removeButton {
+    background : #b8b8f3;
+    border: 0;
+    padding: 5px;
+    border-radius: 3px;
+    text-transform: uppercase
+}
+
+.removeButton:hover {
+    color: blue;
+    background: red;
+}
